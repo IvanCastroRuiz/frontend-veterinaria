@@ -1,34 +1,27 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { AuthLayout } from './layout.tsx/AuthLayout'
-import Login from './paginas/Login'
-import Registrar from './paginas/Registrar'
-import OlvidePassword from './paginas/OlvidePassword'
-import ConfirmarCuenta from './paginas/ConfirmarCuenta'
-import FormularioUsuarios from './paginas/FormularioUsuarios'
-import Mascota from './paginas/Mascota'
-
-
-
+import { Routes, Route } from 'react-router-dom'
+import { AuthLayout } from './layout/AuthLayout'
+import Login from '../src/app/auth/pages/Login'
+import PrivateLayout from './layout/PrivateLayout';
+import HomeAdmin from './shared/pages/HomeAdmin';
+import HomeClientes from './shared/pages/HomeClientes';
+import HomeEmpleado from './shared/pages/HomeEmpleado';
 
 function App() {
 
   return (
+    <Routes>
+      {/* RUTAS DE AUTORIZACION */}
+      <Route path="/" element={<AuthLayout />}>
+        <Route index element={<Login />} />
+      </Route>
 
-    < BrowserRouter>
-      <Routes>
-        <Route path="/" element={<AuthLayout />}>
-          < Route index element={<Login />} />
-          < Route path="registrar" element={<Registrar />} />
-          < Route path="olvide-Password" element={<OlvidePassword />} />
-          < Route path="confirmar/:id" element={<ConfirmarCuenta />} />
-          < Route path="formulario-Usuarios" element={<FormularioUsuarios />} />
-          < Route path="mascota" element={<Mascota />} />
-        </Route>
-
-      </Routes>
-
-    </BrowserRouter>
-
+      {/* RUTAS DE USUARIO LOGUEADO */}
+      <Route path="/home" element={<PrivateLayout />}>
+        <Route path='a' element={<HomeAdmin />} />
+        <Route path='c' element={<HomeClientes />} />
+        <Route path='e' element={<HomeEmpleado />} />
+      </Route>
+    </Routes>
   )
 }
 
