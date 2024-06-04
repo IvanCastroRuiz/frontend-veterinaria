@@ -5,6 +5,7 @@ import PrivateLayout from './layout/PrivateLayout';
 import HomeAdmin from './shared/pages/HomeAdmin';
 import HomeClientes from './shared/pages/HomeClientes';
 import HomeEmpleado from './shared/pages/HomeEmpleado';
+import Empleados from './app/empleados/pages/Empleados';
 
 function App() {
 
@@ -17,7 +18,9 @@ function App() {
 
       {/* RUTAS DE USUARIO LOGUEADO */}
       <Route path="/home" element={<PrivateLayout />}>
-        <Route path='a' element={<HomeAdmin />} />
+        <Route path='a' element={<HomeAdmin />} >
+          <Route path='empleados' element={<Empleados />} />
+        </Route>
         <Route path='c' element={<HomeClientes />} />
         <Route path='e' element={<HomeEmpleado />} />
       </Route>

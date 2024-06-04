@@ -1,7 +1,9 @@
 
 const HomeClientes = () => {
     return (
-        <div>HomeClientes</div>
+        <section className="my-5 mx-10">
+            HOME CLIENTES
+        </section>
     )
 }
 

@@ -12,6 +12,7 @@ const AuthProvider = ({ children }: any) => {
 
   const navigate = useNavigate()
 
+  const [sideOpen, setSideOpen] = useState(false);
 
   const [alerta, setAlerta] = useState<{ error: boolean, msg: string }>({
     error: false,
@@ -40,13 +41,22 @@ const AuthProvider = ({ children }: any) => {
     localStorage.setItem('token', data.access_token)
     localStorage.setItem('usuario', JSON.stringify(usuario))
     localStorage.setItem('menus', JSON.stringify(data.menus))
-    navigate(redirectUser[data.perfiles[0].id_perfil])
+
+    navigate(redirectUser[data.perfiles[0].id_perfil]) 
+  }
+
+  const cerrarSesion = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('usuario')
+    localStorage.removeItem('menus')
+    navigate('/')
   }
 
   return <AuthContext.Provider value={{
     alerta, setAlerta,
     formLogin, setFormLogin,
-    loginUsuario,
+    loginUsuario, sideOpen, setSideOpen,
+    cerrarSesion
   }}>{children}</AuthContext.Provider>;
 };
 

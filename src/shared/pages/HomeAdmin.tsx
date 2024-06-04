@@ -1,6 +1,10 @@
+import { Outlet } from "react-router-dom"
+
 const HomeAdmin = () => {
     return (
-        <div>HomeAdmin</div>
+        <section className="my-5 mx-10">
+            <Outlet />
+        </section>
     )
 }
 

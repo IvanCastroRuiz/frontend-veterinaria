@@ -1,7 +1,9 @@
 
 const HomeEmpleado = () => {
   return (
-    <div>HomeEmpleado</div>
+    <section className="my-5 mx-10">
+      HOME EMPLEADO
+    </section>
   )
 }
 

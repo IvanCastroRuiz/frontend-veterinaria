@@ -1,6 +1,6 @@
 
 import { useContext, useState } from "react"
-import logo_clinica from "../../../img/logo_clinica.svg"
+import logo_clinica from "/img/logo_clinica.svg"
 import { Link } from 'react-router-dom'
 import AuthContext from "../context/AuthProvider"
 import { Login } from "../auth"
@@ -73,7 +73,7 @@ const FormularioLogin = () => {
                 <input
                     type="submit"
                     value="Iniciar Sesion"
-                    className="bg-blue-400 w-full max-w-md py-3 rounded-xl text-black uppercase font-bold mt-5 hover:cursor-pointer hover:bg-blue-600 text-center transition-all duration-300"
+                    className="bg-app-blue w-full max-w-md py-3 rounded-xl text-black uppercase font-bold mt-5 hover:cursor-pointer hover:bg-blue-500 text-center transition-all duration-300"
                 />
             </form>
             <nav className='mt-10 '>
