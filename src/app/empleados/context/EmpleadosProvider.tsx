@@ -12,7 +12,10 @@ const EmpleadosProvider = ({ children }: any) => {
 
   const [empleados, setEmpleados] = useState<any>([])
 
+  const [editando, setEditando] = useState(false)
+
   const [empleado, setEmpleado] = useState<any>({
+    id_empleado: 0,
     id_tipo_doc: 0,
     nombres: '',
     apellidos: '',
@@ -40,7 +43,8 @@ const EmpleadosProvider = ({ children }: any) => {
   return <EmpleadosContext.Provider value={{
     obtenerEmpleados,
     empleados, setEmpleados,
-    empleado, setEmpleado
+    empleado, setEmpleado,
+    editando, setEditando
   }}>{children}</EmpleadosContext.Provider>;
 };
 

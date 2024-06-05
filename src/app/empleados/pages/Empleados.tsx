@@ -4,10 +4,12 @@ import DataTable from "react-data-table-component";
 import ModalAgregar from "../components/ModalAgregar";
 import { Button } from "@mui/material";
 import Icons from "../../../../public/assets/Icons";
+import { buscarEmpleadoAPI, eliminarEmpleadoAPI } from "../api/empleados.api";
+import Swal from "sweetalert2";
 
 export const Empleados = () => {
 
-  const { obtenerEmpleados, empleados } = useContext(EmpleadosContext);
+  const { obtenerEmpleados, empleados, setEmpleados, setEditando, setEmpleado } = useContext(EmpleadosContext);
 
   const [open, setOpen] = useState(false);
 
@@ -15,6 +17,52 @@ export const Empleados = () => {
   useEffect(() => {
     obtenerEmpleados();
   }, []);
+
+  const buscarEmpleado = async (empleado_id: number) => {
+    setEditando(true)
+    setOpen(true)
+
+    setEmpleado({ id_empleado: empleado_id })
+
+    const { error, data } = await buscarEmpleadoAPI(empleado_id)
+
+    if (error) {
+      // setAlerta({ error, msg: message })
+      // setTimeout(() => setAlerta({ error: false, msg: '' }), 3000)
+      return
+    }
+
+    setEmpleado(data)
+  }
+
+  const eliminarEmpleado = (empleado_id: number) => {
+
+    Swal.fire({
+      icon: "warning",
+      title: "¿Desea inactivar el empleado?",
+      text: "Esta acción puede generar errores",
+      confirmButtonText: "Eliminar",
+      showCancelButton: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const { message } = await eliminarEmpleadoAPI(empleado_id, 2)
+
+        const empleados_actual = empleados.filter((emp: any) => emp.id_usuario !== empleado_id)
+        if (empleados_actual) {
+          setEmpleados(empleados_actual)
+
+          Swal.fire({
+            title: `Exitoso`,
+            text: `${message}`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
+      }
+    });
+
+  }
 
   const columns = [
     {
@@ -44,10 +92,10 @@ export const Empleados = () => {
     },
     {
       name: 'Acciones',
-      selector: (_: any) => (
+      selector: (row: any) => (
         <div className="flex gap-3">
-          <Button variant="outlined" color="primary" onClick={_ => setOpen(true)} size="small">{Icons['pencil']}</Button>
-          <Button variant="outlined" color="error" onClick={_ => setOpen(true)} size="small">{Icons['trash']}</Button>
+          <Button variant="outlined" color="primary" onClick={_ => buscarEmpleado(row.id_usuario)} size="small">{Icons['pencil']}</Button>
+          <Button variant="outlined" color="error" onClick={_ => eliminarEmpleado(row.id_usuario)} size="small">{Icons['trash']}</Button>
         </div>
       ),
       sortable: true,
@@ -57,11 +105,11 @@ export const Empleados = () => {
   return (
     <div className="card">
       <h1 className="font-black text-6xl">Empleados</h1>
-      
+
       <ModalAgregar open={open} setOpen={setOpen} />
 
       <section className="mt-10 mb-2">
-        <Button variant="contained" color="primary" onClick={_ => setOpen(true)}>Agregar</Button>
+        <Button variant="contained" color="primary" onClick={_ => { setEditando(false); setOpen(true) }}>Agregar</Button>
       </section>
 
       <DataTable
