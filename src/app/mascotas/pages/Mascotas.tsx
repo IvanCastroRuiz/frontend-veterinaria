@@ -1,17 +1,17 @@
 import { useContext, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import ModalAgregar from "../components/ModalAgregar";
+import ModalAgregar from "../components/ModalAgregarMascota";
 import { Button } from "@mui/material";
 import Icons from "../../../../public/assets/Icons";
-import ClientesContext from "../context/ClientesProvider";
-import ModalMascotasCliente from "../../mascotas/components/ModalMascotasCliente";
-import MascotasContext from "../../mascotas/context/MascotasProvider";
+import ClientesContext from "../context/MascotasProvider";
+import ModalMascotasCliente from "../components/ModalMascotasCliente";
 
 export const Clientes = () => {
 
-  const { obtenerClientes, clientes, setEditando, buscarCliente, eliminarCliente, open, setOpen } = useContext(ClientesContext);
-
-  const { openMascotas, setOpenMascotas, obtenerMascotas } = useContext(MascotasContext)
+  const {
+    obtenerClientes, clientes, setEditando, buscarCliente,
+    eliminarCliente, open, setOpen, openMascotas, setOpenMascotas, obtenerMascotasCliente
+  } = useContext(ClientesContext);
 
   useEffect(() => { obtenerClientes() }, []);
 
@@ -46,7 +46,7 @@ export const Clientes = () => {
       selector: (row: any) => (
         <div className="flex gap-3">
           <Button variant="outlined" color="primary" onClick={_ => buscarCliente(row.id_usuario)} size="small" title="Editar">{Icons['pencil']}</Button>
-          <Button variant="outlined" color="success" onClick={_ => obtenerMascotas(row.id_usuario)} size="small" title="Mascotas">{Icons['pet']}</Button>
+          <Button variant="outlined" color="success" onClick={_ => obtenerMascotasCliente(row.id_usuario)} size="small" title="Mascotas">{Icons['pet']}</Button>
           <Button variant="outlined" color="error" onClick={_ => eliminarCliente(row.id_usuario)} size="small" title="Inactivar">{Icons['trash']}</Button>
         </div>
       ),

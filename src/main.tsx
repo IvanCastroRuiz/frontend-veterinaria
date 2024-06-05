@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import React from 'react'
 import { EmpleadosProvider } from './app/empleados/context/EmpleadosProvider.tsx'
 import { ClientesProvider } from './app/clientes/context/ClientesProvider.tsx'
+import { MascotasProvider } from './app/mascotas/context/MascotasProvider.tsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <AuthProvider>
         <EmpleadosProvider>
           <ClientesProvider>
-            <App />
+            <MascotasProvider>
+              <App />
+            </MascotasProvider>
           </ClientesProvider>
         </EmpleadosProvider>
       </AuthProvider>
