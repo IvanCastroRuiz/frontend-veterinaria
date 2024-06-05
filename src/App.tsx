@@ -6,6 +6,7 @@ import HomeAdmin from './shared/pages/HomeAdmin';
 import HomeClientes from './shared/pages/HomeClientes';
 import HomeEmpleado from './shared/pages/HomeEmpleado';
 import Empleados from './app/empleados/pages/Empleados';
+import Clientes from './app/clientes/pages/Clientes';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Route path="/home" element={<PrivateLayout />}>
         <Route path='a' element={<HomeAdmin />} >
           <Route path='empleados' element={<Empleados />} />
+          <Route path='clientes' element={<Clientes />} />
         </Route>
         <Route path='c' element={<HomeClientes />} />
         <Route path='e' element={<HomeEmpleado />} />
