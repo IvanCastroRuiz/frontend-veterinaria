@@ -1,10 +1,10 @@
 import WebService, { ReponseWerbService } from "../../../config/WebService"
-import { Empleado } from "./empleados"
+import { Cliente } from "./clientes"
 
 // const navigate = useNavigate()
 // const location = useLocation()
 
-export const obtenerEmpleadosAPI = async (): Promise<ReponseWerbService> => {
+export const obtenerClientesAPI = async (): Promise<ReponseWerbService> => {
 
     const token = localStorage.getItem('token')
     if (!token) {
@@ -22,7 +22,7 @@ export const obtenerEmpleadosAPI = async (): Promise<ReponseWerbService> => {
             }
         }
 
-        const { data } = await WebService(`empleados?estado=${1}`, config)
+        const { data } = await WebService(`clientes?estado=${1}`, config)
         return data
     } catch (error: any) {
         return error.response.data
@@ -30,7 +30,7 @@ export const obtenerEmpleadosAPI = async (): Promise<ReponseWerbService> => {
 }
 
 
-export const guargarEmpleadoAPI = async (form: Empleado): Promise<ReponseWerbService> => {
+export const guardarClienteAPI = async (form: Cliente): Promise<ReponseWerbService> => {
 
     const token = localStorage.getItem('token')
     if (!token) {
@@ -46,14 +46,14 @@ export const guargarEmpleadoAPI = async (form: Empleado): Promise<ReponseWerbSer
             }
         }
 
-        const { data } = await WebService.post(`empleados`, form, config)
+        const { data } = await WebService.post(`clientes`, form, config)
         return data
     } catch (error: any) {
         return error.response.data
     }
 }
 
-export const buscarEmpleadoAPI = async (empleado_id: number): Promise<ReponseWerbService> => {
+export const buscarClienteAPI = async (cliente_id: number): Promise<ReponseWerbService> => {
 
     const token = localStorage.getItem('token')
     if (!token) {
@@ -69,14 +69,14 @@ export const buscarEmpleadoAPI = async (empleado_id: number): Promise<ReponseWer
             }
         }
 
-        const { data } = await WebService.get(`empleados/${empleado_id}`, config)
+        const { data } = await WebService.get(`clientes/${cliente_id}`, config)
         return data
     } catch (error: any) {
         return error.response.data
     }
 }
 
-export const editarEmpleadoAPI = async (empleado_id: number, form: Empleado): Promise<ReponseWerbService> => {
+export const editarClienteAPI = async (cliente_id: number, form: Cliente): Promise<ReponseWerbService> => {
 
     const token = localStorage.getItem('token')
     if (!token) {
@@ -92,7 +92,7 @@ export const editarEmpleadoAPI = async (empleado_id: number, form: Empleado): Pr
             }
         }
 
-        const { data } = await WebService.patch(`empleados/${empleado_id}`, form, config)
+        const { data } = await WebService.patch(`clientes/${cliente_id}`, form, config)
         return data
     } catch (error: any) {
         return error.response.data
@@ -100,7 +100,7 @@ export const editarEmpleadoAPI = async (empleado_id: number, form: Empleado): Pr
 }
 
 
-export const eliminarEmpleadoAPI = async (empleado_id: number, estado: number): Promise<ReponseWerbService> => {
+export const eliminarClienteAPI = async (cliente_id: number, estado: number): Promise<ReponseWerbService> => {
 
     const token = localStorage.getItem('token')
     if (!token) {
@@ -116,7 +116,7 @@ export const eliminarEmpleadoAPI = async (empleado_id: number, estado: number): 
             }
         }
 
-        const { data } = await WebService.delete(`empleados/${empleado_id}?estado=${estado}`, config)
+        const { data } = await WebService.delete(`clientes/${cliente_id}?estado=${estado}`, config)
         return data
     } catch (error: any) {
         return error.response.data

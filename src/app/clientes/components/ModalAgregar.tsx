@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useContext } from 'react';
 import Formulario from './Formulario';
-import EmpleadosContext from '../context/EmpleadosProvider';
+import ClientesContext from '../context/ClientesProvider';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -18,12 +18,12 @@ const style = {
 };
 
 export default function ModalAgregar({ open, setOpen }: { open: boolean, setOpen: any }) {
-    const { setEmpleado, editando, setEditando } = useContext(EmpleadosContext)
+    const { setCliente, editando, setEditando } = useContext(ClientesContext)
 
 
     const handleClose = () => {
-        setEmpleado({
-            id_empleado: 0,
+        setCliente({
+            id_usuario: 0,
             id_tipo_doc: 0,
             nombres: '',
             apellidos: '',
@@ -49,7 +49,7 @@ export default function ModalAgregar({ open, setOpen }: { open: boolean, setOpen
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h5">
-                        {editando ? 'Editar Empleado' : 'Agregar Empleado'}
+                        {editando ? 'Editar' : 'Agregar'} Cliente
                     </Typography>
                     <Formulario {...{  handleClose }} />
                 </Box>

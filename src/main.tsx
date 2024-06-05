@@ -5,16 +5,19 @@ import { AuthProvider } from './app/auth/context/AuthProvider.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import React from 'react'
 import { EmpleadosProvider } from './app/empleados/context/EmpleadosProvider.tsx'
+import { ClientesProvider } from './app/clientes/context/ClientesProvider.tsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-        <AuthProvider>
-          <EmpleadosProvider>
+      <AuthProvider>
+        <EmpleadosProvider>
+          <ClientesProvider>
             <App />
-          </EmpleadosProvider>
-        </AuthProvider>
+          </ClientesProvider>
+        </EmpleadosProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,
 )

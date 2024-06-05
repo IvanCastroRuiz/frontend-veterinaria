@@ -1,5 +1,5 @@
-export interface Empleado {
-  id_empleado: number
+export interface Cliente {
+  id_usuario: number
   id_tipo_doc: number
   nombres: string
   apellidos: string
