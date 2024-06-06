@@ -58,8 +58,6 @@ export const Clientes = () => {
     <div className="card">
       <h1 className="font-black text-6xl">Clientes</h1>
 
-      <ModalAgregar open={open} setOpen={setOpen} />
-      <ModalMascotasCliente open={openMascotas} setOpen={setOpenMascotas} />
 
       <section className="mt-10 mb-2">
         <Button variant="contained" color="primary" onClick={_ => { setEditando(false); setOpen(true) }}>Agregar</Button>
@@ -69,11 +67,10 @@ export const Clientes = () => {
         columns={columns}
         data={clientes}
         pagination
-        // paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
-        // subHeader
-        // subHeaderComponent={<FilterComponent />}
         persistTableHead
       />
+      <ModalAgregar open={open} setOpen={setOpen} />
+      <ModalMascotasCliente open={openMascotas} setOpen={setOpenMascotas} />
     </div>
   );
 }

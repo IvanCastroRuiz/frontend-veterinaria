@@ -7,6 +7,8 @@ import HomeClientes from './shared/pages/HomeClientes';
 import HomeEmpleado from './shared/pages/HomeEmpleado';
 import Empleados from './app/empleados/pages/Empleados';
 import Clientes from './app/clientes/pages/Clientes';
+import Productos from './app/productos/pages/Productos';
+import Citas from './app/citas/pages/Citas';
 
 function App() {
 
@@ -22,6 +24,8 @@ function App() {
         <Route path='a' element={<HomeAdmin />} >
           <Route path='empleados' element={<Empleados />} />
           <Route path='clientes' element={<Clientes />} />
+          <Route path='citas' element={<Citas />} />
+          <Route path='productos' element={<Productos />} />
         </Route>
         <Route path='c' element={<HomeClientes />} />
         <Route path='e' element={<HomeEmpleado />} />

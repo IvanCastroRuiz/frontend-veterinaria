@@ -2,8 +2,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useContext } from 'react';
-import MascotasContext from '../context/MascotasProvider';
-import FormularioMascota from './FormularioMascota';
+import Formulario from './Formulario';
+import ProductosContext from '../context/ProductosProvider';
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -17,17 +17,20 @@ const style = {
     p: 4,
 };
 
-export default function ModalAgregarMascota({ open, setOpen }: { open: boolean, setOpen: any }) {
-    const { setMascota, editando, setEditando } = useContext(MascotasContext)
+export default function ModalAgregar({ open, setOpen }: { open: boolean, setOpen: any }) {
+    const { setProducto, editando, setEditando } = useContext(ProductosContext)
 
 
     const handleClose = () => {
-        setMascota({
-            id_raza: 0,
-            id_especie: 0,
+        setProducto({
+            id_producto: 0,
+            referencia: '',
             nombre: '',
-            edad: 0,
-            color: '',
+            cantidad: 0,
+            id_unidad: 0,
+            fecha_vencimiento: '',
+            precio_costo: 0,
+            precio_venta: 0,
         })
         setOpen(false);
         setEditando(false)
@@ -37,7 +40,6 @@ export default function ModalAgregarMascota({ open, setOpen }: { open: boolean, 
     return (
         <div>
             <Modal
-                sx={{ zIndex: 1000 }}
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
@@ -45,9 +47,9 @@ export default function ModalAgregarMascota({ open, setOpen }: { open: boolean, 
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h5">
-                        {editando ? 'Editar' : 'Agregar'}
+                        {editando ? 'Editar' : 'Agregar'} Producto
                     </Typography>
-                    <FormularioMascota {...{ handleClose }} />
+                    <Formulario {...{ handleClose }} />
                 </Box>
             </Modal>
         </div>

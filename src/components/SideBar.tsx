@@ -39,7 +39,7 @@ const SideBar = () => {
                 {menus.map((menu: Menu) => (
 
                     <li key={menu.id_menu} className={`mb-2 text-gray-500 hover:bg-app-blue hover:cursor-pointer rounded-lg py-1 px-2 overflow-hidden ${location.pathname.includes(menu.url) ? 'bg-app-blue text-black' : ''}`}>
-                        <Link to={`${redirectUser[usuario.perfiles[0].id_perfil]}${menu.url}`} className={`font-semibold truncate flex gap-2  ${!sideOpen && 'justify-center'} ${location.pathname.includes(menu.url) && 'text-black'}`}>
+                        <Link to={`${redirectUser[usuario.perfiles[0].id_perfil]}${menu.url}`} title={menu.nombre} className={`font-semibold truncate flex gap-2  ${!sideOpen && 'justify-center'} ${location.pathname.includes(menu.url) && 'text-black'}`}>
                             <span>{Icons[menu.nombre.toLowerCase()]}</span> 
                             <span className={`${!sideOpen && 'hidden'}`}>
                                 {sideOpen && menu.nombre}

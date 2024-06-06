@@ -82,9 +82,9 @@ const MascotasProvider = ({ children }: any) => {
       showCancelButton: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { message } = await eliminarMascotaAPI(mascota_id, 2)
+        const { message } = await eliminarMascotaAPI(cliente.id_usuario, mascota_id, 2)
 
-        const mascotas_actual = mascotas.filter((emp: any) => emp.id_usuario !== mascota_id)
+        const mascotas_actual = mascotas.filter((emp: any) => emp.id_mascota !== mascota_id)
         if (mascotas_actual) {
           setMascotas(mascotas_actual)
 

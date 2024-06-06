@@ -1,10 +1,10 @@
 import WebService, { ReponseWerbService } from "../../../config/WebService"
-import { Mascota } from "./mascota"
+import { Producto } from "./citas"
 
 // const navigate = useNavigate()
 // const location = useLocation()
 
-export const obtenerMascotasClienteAPI = async (cliente_id: number): Promise<ReponseWerbService> => {
+export const obtenerCitasAPI = async (): Promise<ReponseWerbService> => {
 
     const token = localStorage.getItem('token')
     if (!token) {
@@ -22,7 +22,7 @@ export const obtenerMascotasClienteAPI = async (cliente_id: number): Promise<Rep
             }
         }
 
-        const { data } = await WebService(`clientes/${cliente_id}/mascotas?estado=${1}`, config)
+        const { data } = await WebService(`citas?estado=${1}`, config)
         return data
     } catch (error: any) {
         return error.response.data
@@ -30,7 +30,7 @@ export const obtenerMascotasClienteAPI = async (cliente_id: number): Promise<Rep
 }
 
 
-export const guardarMascotaAPI = async (cliente_id: number, form: Mascota): Promise<ReponseWerbService> => {
+export const guardarProductoAPI = async (form: Producto): Promise<ReponseWerbService> => {
 
     const token = localStorage.getItem('token')
     if (!token) {
@@ -46,14 +46,14 @@ export const guardarMascotaAPI = async (cliente_id: number, form: Mascota): Prom
             }
         }
 
-        const { data } = await WebService.post(`clientes/${cliente_id}/mascotas`, form, config)
+        const { data } = await WebService.post(`productos`, form, config)
         return data
     } catch (error: any) {
         return error.response.data
     }
 }
 
-export const buscarMascotaAPI = async (cliente_id: number, mascota_id: number): Promise<ReponseWerbService> => {
+export const buscarProductoAPI = async (producto_id: number): Promise<ReponseWerbService> => {
 
     const token = localStorage.getItem('token')
     if (!token) {
@@ -69,14 +69,14 @@ export const buscarMascotaAPI = async (cliente_id: number, mascota_id: number): 
             }
         }
 
-        const { data } = await WebService.get(`clientes/${cliente_id}/mascotas/${mascota_id}`, config)
+        const { data } = await WebService.get(`productos/${producto_id}`, config)
         return data
     } catch (error: any) {
         return error.response.data
     }
 }
 
-export const editarMascotaAPI = async (cliente_id: number, mascota_id: number, form: Mascota): Promise<ReponseWerbService> => {
+export const editarProductoAPI = async (producto_id: number, form: Producto): Promise<ReponseWerbService> => {
 
     const token = localStorage.getItem('token')
     if (!token) {
@@ -92,14 +92,15 @@ export const editarMascotaAPI = async (cliente_id: number, mascota_id: number, f
             }
         }
 
-        const { data } = await WebService.patch(`clientes/${cliente_id}/mascotas/${mascota_id}`, form, config)
+        const { data } = await WebService.patch(`productos/${producto_id}`, form, config)
         return data
     } catch (error: any) {
         return error.response.data
     }
 }
 
-export const eliminarMascotaAPI = async (cliente_id: number, mascota_id: number, estado: number): Promise<ReponseWerbService> => {
+
+export const eliminarProductoAPI = async (empleado_id: number, estado: number): Promise<ReponseWerbService> => {
 
     const token = localStorage.getItem('token')
     if (!token) {
@@ -115,7 +116,7 @@ export const eliminarMascotaAPI = async (cliente_id: number, mascota_id: number,
             }
         }
 
-        const { data } = await WebService.delete(`clientes/${cliente_id}/mascotas/${mascota_id}?estado=${estado}`, config)
+        const { data } = await WebService.delete(`productos/${empleado_id}?estado=${estado}`, config)
         return data
     } catch (error: any) {
         return error.response.data

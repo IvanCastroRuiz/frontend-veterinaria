@@ -23,7 +23,7 @@ const style = {
 
 export default function ModalMascotasCliente({ open, setOpen }: { open: boolean, setOpen: any }) {
   const { mascotas, setMascotas, buscarMascota, eliminarMascota, openForm, setOpenForm, setEditando } = useContext(MascotasContext)
-  const { setCliente } = useContext(ClientesContext)
+  const { setCliente, cliente } = useContext(ClientesContext)
 
   const handleClose = () => {
     setMascotas([])
@@ -41,6 +41,7 @@ export default function ModalMascotasCliente({ open, setOpen }: { open: boolean,
       confirmarContrasena: '',
     })
   }
+
 
   const columns = [
     {
@@ -83,9 +84,8 @@ export default function ModalMascotasCliente({ open, setOpen }: { open: boolean,
 
   return (
     <div>
-
-
       <Modal
+        sx={{ zIndex: 1000 }}
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -93,7 +93,7 @@ export default function ModalMascotasCliente({ open, setOpen }: { open: boolean,
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h5">
-            Mascotas
+            Mascotas Cliente - <span className='truncate'>{cliente.nombres} {cliente.apellidos}</span>
           </Typography>
 
           <section className="mt-10 mb-2">
@@ -104,14 +104,11 @@ export default function ModalMascotasCliente({ open, setOpen }: { open: boolean,
             columns={columns}
             data={mascotas}
             pagination
-            // paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
-            // subHeader
-            // subHeaderComponent={<FilterComponent />}
             persistTableHead
           />
-          <ModalAgregarMascota open={openForm} setOpen={setOpenForm} />
         </Box>
       </Modal>
+      <ModalAgregarMascota open={openForm} setOpen={setOpenForm} />
     </div >
   );
 }
