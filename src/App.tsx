@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import { AuthLayout } from './layout/AuthLayout'
 import Login from '../src/app/auth/pages/Login'
+import Registrar from '../src/app/auth/pages/Registrar'
+import OlvidePassword from '../src/app/auth/pages/OlvidePassword'
 import PrivateLayout from './layout/PrivateLayout';
 import HomeAdmin from './shared/pages/HomeAdmin';
 import HomeClientes from './shared/pages/HomeClientes';
@@ -17,6 +19,8 @@ function App() {
       {/* RUTAS DE AUTORIZACION */}
       <Route path="/" element={<AuthLayout />}>
         <Route index element={<Login />} />
+        <Route path="registrar" element={<Registrar />} />
+        <Route path="olvide-password" element={<OlvidePassword />} />
       </Route>
 
       {/* RUTAS DE USUARIO LOGUEADO */}
@@ -27,7 +31,9 @@ function App() {
           <Route path='citas' element={<Citas />} />
           <Route path='productos' element={<Productos />} />
         </Route>
-        <Route path='c' element={<HomeClientes />} />
+        <Route path='c' element={<HomeClientes />} >
+          <Route path='citas' element={<Citas />} />
+        </Route>
         <Route path='e' element={<HomeEmpleado />} />
       </Route>
     </Routes>

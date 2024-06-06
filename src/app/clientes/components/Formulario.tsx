@@ -5,12 +5,16 @@ import { editarClienteAPI, guardarClienteAPI } from '../api/clientes.api'
 import AuthContext from '../../auth/context/AuthProvider'
 import Alerta from '../../../components/Alerta'
 import ClientesContext from '../context/ClientesProvider'
+import { useLocation } from 'react-router-dom'
 
 interface FormularioProps {
-    handleClose: () => void
+    handleClose?: () => void
 }
 
 const Formulario = ({ handleClose }: FormularioProps) => {
+
+    const location = useLocation();
+
     const { alerta, setAlerta } = useContext(AuthContext)
     const { clientes, setClientes, cliente, setCliente, editando } = useContext(ClientesContext)
 
@@ -150,11 +154,18 @@ const Formulario = ({ handleClose }: FormularioProps) => {
                     </div>
                 </div>
                 <div className="w-full flex justify-end gap-3">
-                    <button className="transition-all bg-gray-400 w-full py-1 px-10 rounded text-black uppercase font-bold mt-5 hover:cursor-pointer hover:bg-gray-600 md:w-auto" onClick={handleClose}>Cancelar</button>
+                    
+                    {
+                        !location.pathname.includes("/registrar") && (
+                            <button className="transition-all bg-gray-400 w-full py-1 px-10 rounded text-black uppercase font-bold mt-5 hover:cursor-pointer hover:bg-gray-600 md:w-auto" onClick={handleClose}>Cancelar</button> 
+                        ) 
+                            
+                    }
+                    
                     <input type="submit" value="Guardar" className="transition-all bg-blue-400 w-full py-1 px-10 rounded text-black uppercase font-bold mt-5 hover:cursor-pointer hover:bg-blue-600 md:w-auto" />
                 </div>
             </div>
-        </form>
+        </form> //
     )
 }
 

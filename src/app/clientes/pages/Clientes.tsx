@@ -46,7 +46,7 @@ export const Clientes = () => {
       selector: (row: any) => (
         <div className="flex gap-3">
           <Button variant="outlined" color="primary" onClick={_ => buscarCliente(row.id_usuario)} size="small" title="Editar">{Icons['pencil']}</Button>
-          <Button variant="outlined" color="success" onClick={_ => obtenerMascotas(row.id_usuario)} size="small" title="Mascotas">{Icons['pet']}</Button>
+          <Button variant="outlined" color="success" onClick={_ => obtenerMascotas(row.id_usuario)} size="small" title="Mascotas">{Icons['mascotas']}</Button>
           <Button variant="outlined" color="error" onClick={_ => eliminarCliente(row.id_usuario)} size="small" title="Inactivar">{Icons['trash']}</Button>
         </div>
       ),
