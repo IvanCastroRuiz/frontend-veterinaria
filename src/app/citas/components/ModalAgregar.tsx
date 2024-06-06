@@ -18,20 +18,25 @@ const style = {
 };
 
 export default function ModalAgregar({ open, setOpen }: { open: boolean, setOpen: any }) {
-    const { setProducto, editando, setEditando } = useContext(CitasContext)
+    const { setCita, setReceta, editando, setEditando,  setRecetasCita } = useContext(CitasContext)
 
 
     const handleClose = () => {
-        setProducto({
-            id_producto: 0,
-            referencia: '',
-            nombre: '',
-            cantidad: 0,
-            id_unidad: 0,
-            fecha_vencimiento: '',
-            precio_costo: 0,
-            precio_venta: 0,
+        setCita({
+            id_cliente: 0,
+            id_mascota: 0,
+            id_veterinario: 0,
+            fecha: '',
+            observaciones: '',
+            total_cita: 0,
         })
+        setReceta({
+            id_producto: 0,
+            cantidad: 0,
+            precio_total: 0
+        })
+        setRecetasCita([])
+
         setOpen(false);
         setEditando(false)
     }

@@ -12,18 +12,24 @@ const CitasProvider = ({ children }: any) => {
   const { setAlerta } = useContext(AuthContext)
 
   const [citas, setCitas] = useState<any>([])
+  const [recetasCita, setRecetasCita] = useState<any>([])
 
   const [open, setOpen] = useState(false);
   const [editando, setEditando] = useState(false)
 
-  const [producto, setProducto] = useState<any>({
+  const [cita, setCita] = useState<any>({
+    id_cliente: 0,
+    id_mascota: 0,
+    id_veterinario: 0,
+    fecha: '',
+    observaciones: '',
+    total_cita: 0,
+  })
+
+  const [receta, setReceta] = useState<any>({
     id_producto: 0,
-    referencia: '',
-    nombre: '',
     cantidad: 0,
-    id_unidad: 0,
-    precio_costo: 0,
-    precio_venta: 0,
+    precio_total: 0
   })
 
 
@@ -45,7 +51,7 @@ const CitasProvider = ({ children }: any) => {
     setEditando(true)
     setOpen(true)
 
-    setProducto({...producto, id_producto })
+    setCita({...cita, id_producto })
 
     const { error, data } = await buscarProductoAPI(id_producto)
 
@@ -55,7 +61,7 @@ const CitasProvider = ({ children }: any) => {
       return
     }
 
-    setProducto(data)
+    setCita(data)
   }
 
   const eliminarProducto = (producto_id: number) => {
@@ -90,11 +96,13 @@ const CitasProvider = ({ children }: any) => {
   return <CitasContext.Provider value={{
     obtenerCitas,
     citas, setCitas,
-    producto, setProducto,
+    cita, setCita,
     editando, setEditando,
     buscarProducto,
     open, setOpen,
-    eliminarProducto
+    eliminarProducto,
+    receta, setReceta,
+    recetasCita, setRecetasCita
   }}>{children}</CitasContext.Provider>;
 };
 
