@@ -86,7 +86,9 @@ const Formulario = ({ handleClose }: FormularioProps) => {
             timer: 2000,
         });
 
-        handleClose()
+        if(handleClose){
+            handleClose()
+         }
     }
 
     return (
